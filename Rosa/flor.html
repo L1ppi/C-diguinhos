@@ -5,9 +5,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="flor.css">
+    <link rel="stylesheet" href="petalas.css">
+    <link rel="script" href="petala.js">
 </head>
 <body>
-    
+    <!-- <script>
+        // Obtém a largura e a altura da janela do navegador
+        const largura = window.innerWidth;
+        const altura = window.innerHeight;
+
+        // Exibe as dimensões da janela do navegador
+        console.log(`Largura: ${largura}px, Altura: ${altura}px`);
+        alert(`Largura: ${largura}px, Altura: ${altura}px`);
+    </script> -->
         <div class="container">
             <div class="glass">
                 <div class="shine"></div>
@@ -24,25 +34,32 @@
                 <div></div>
                 <div></div>
             </div>
-            <div class="petals">
-                <div></div>
-                <div></div>
-                <div></div>
-                <div></div>
-                <div></div>
-                <div></div>
-                <div></div>
-            </div>
-            <div class="deadPetals">
-                <div></div>
-                <div></div>
-                <div></div>
-                <div></div>
+            <div class="container-petals">
+                <div class="petals">
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                </div>
+                <div class="container-petals">
+                    <div class="petals deadPetals">
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                    </div>
+                </div>
+                <script src="script.js"></script>
             </div>
         </div>
         <div>
             <!-- <h4 class="texto">Mi amor por ti durará hasta que caiga el último pétalo ❤️</h> -->
         </div>
-    
 </body>
 </html>

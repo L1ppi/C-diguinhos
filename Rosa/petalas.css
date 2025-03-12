@@ -1,0 +1,169 @@
+:root {
+    --petal-color: #ffffff;
+    --shadow-light: rgba(255, 255, 255, 0.3);
+    --shadow-dark: rgba(0, 0, 0, 0.2);
+    --petal-width: 56px;
+    --petal-height: 70px;
+}
+
+.container-petals {
+    position: absolute;
+    top: 45%;
+    left: 41%;
+    transform: translate(-50%, -50%);
+}
+
+.petals>div {
+    position: absolute;
+    background: var(--petal-color);
+    width: var(--petal-width);
+    height: var(--petal-height);
+    transition: all 0.5s ease-out;
+}
+
+/* Pétala central com profundidade */
+.petals > div:nth-child(1) {
+    border-radius: 40% 40%;
+    background: radial-gradient(circle at top, var(--petal-color), #d9d9d9);
+    top: 4px;
+    z-index: 15;
+    box-shadow: 0px 10px 20px var(--shadow-dark);
+    transform: scale(1.1);
+}
+
+/* Pétalas laterais */
+.petals > div:nth-child(2),
+.petals > div:nth-child(4),
+.petals > div:nth-child(6),
+.petals > div:nth-child(3),
+.petals > div:nth-child(5),
+.petals > div:nth-child(7) {
+    background: var(--petal-color);
+    top: calc(12px - var(--petal-height) * 0.1);
+    box-shadow: 0px 0px 30px var(--shadow-light);
+}
+
+.petals > div:nth-child(2),
+.petals > div:nth-child(4),
+.petals > div:nth-child(6) {
+    left: -18px;
+    border-radius: 0px 35px 0px 35px;
+    transform-origin: bottom right;
+}
+
+.petals > div:nth-child(3),
+.petals > div:nth-child(5),
+.petals > div:nth-child(7) {
+    left: 18px;
+    border-radius: 35px 0px 35px 0px;
+    transform-origin: bottom left;
+}
+
+/* Ajustando o posicionamento */
+.petals>div:nth-child(2) {
+    top: 10px;
+    z-index: 12;
+    animation: bloom2 3s ease-in-out forwards;
+}
+
+.petals>div:nth-child(3) {
+    top: 10px;
+    z-index: 11;
+    animation: bloom3 3s ease-in-out forwards;
+}
+
+.petals>div:nth-child(4) {
+    top: 8px;
+    z-index: 10;
+    animation: bloom4 3s ease-in-out forwards;
+}
+
+.petals>div:nth-child(5) {
+    top: 8px;
+    z-index: 10;
+    animation: bloom5 3s ease-in-out forwards;
+}
+
+.petals>div:nth-child(6) {
+    top: 6px;
+    z-index: 8;
+    animation: bloom6 3s ease-in-out forwards;
+}
+
+.petals>div:nth-child(7) {
+    top: 6px;
+    z-index: 7;
+    animation: bloom7 3s ease-in-out forwards;
+}
+
+/* Efeitos de animação */
+@keyframes fall {
+    0% { transform: translateX(0) translateY(0) rotate(0deg); opacity: 1; }
+    30% { transform: translateX(var(--fall-x)) translateY(60px) rotate(var(--fall-rotate)); opacity: 1; }
+    50% { transform: translateX(calc(var(--fall-x) * 2)) translateY(150px) rotate(calc(var(--fall-rotate) * 2)); opacity: 0.8; }
+    70% { transform: translateX(calc(var(--fall-x) * 3)) translateY(230px) rotate(calc(var(--fall-rotate) * 3)); opacity: 0.6; }
+    100% { transform: translateX(calc(var(--fall-x) * 4)) translateY(300px) rotate(calc(var(--fall-rotate) * 4)); opacity: 0; }
+}
+
+.falling-left {
+    --fall-x: -30px;
+    --fall-rotate: -10deg;
+    animation: fall 10s ease-in-out infinite;
+}
+
+.falling-right {
+    --fall-x: 30px;
+    --fall-rotate: 10deg;
+    animation: fall 10s ease-in-out infinite;
+}
+
+/* Aplicando as classes às pétalas */
+.deadPetals>div:nth-child(2),
+.deadPetals>div:nth-child(4),
+.deadPetals>div:nth-child(6) {
+    background: var(--petal-color);
+    left: -18px;
+    border-radius: 0px 35px 0px 35px;
+    transform-origin: bottom right;
+    animation: fallLeft 10s ease-in-out infinite;
+}
+
+.deadPetals>div:nth-child(3),
+.deadPetals>div:nth-child(5),
+.deadPetals>div:nth-child(7) {
+    background: var(--petal-color);
+    left: 18px;
+    border-radius: 35px 0px 35px 0px;
+    transform-origin: bottom left;
+    animation: fallRight 10s ease-in-out infinite;
+}
+
+.deadPetals>div:nth-child(2) {
+    top: 10px;
+    animation: bloom2 3s ease-in-out forwards, fallLeft 10s ease-in-out infinite 5s;
+}
+
+.deadPetals>div:nth-child(3) {
+    top: 10px;
+    animation: bloom3 3s ease-in-out forwards, fallRight 10s ease-in-out infinite 10s;
+}
+
+.deadPetals>div:nth-child(4) {
+    top: 8px;
+    animation: bloom4 3s ease-in-out forwards, fallLeft 10s ease-in-out infinite 15s;
+}
+
+.deadPetals>div:nth-child(5) {
+    top: 8px;
+    animation: bloom5 3s ease-in-out forwards, fallRight 10s ease-in-out infinite 20s;
+}
+
+.deadPetals>div:nth-child(6) {
+    top: 6px;
+    animation: bloom6 3s ease-in-out forwards, fallLeft 10s ease-in-out infinite 25s;
+}
+
+.deadPetals>div:nth-child(7) {
+    top: 6px;
+    animation: bloom7 3s ease-in-out forwards, fallRight 10s ease-in-out infinite 30s;
+}
