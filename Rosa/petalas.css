@@ -1,7 +1,7 @@
 :root {
     --petal-color: #ffffff;
-    --shadow-light: rgba(255, 255, 255, 0.3);
-    --shadow-dark: rgba(0, 0, 0, 0.2);
+    --shadow-light: #ffffff4d;
+    --shadow-dark: #00000033;
     --petal-width: 56px;
     --petal-height: 70px;
 }
@@ -11,9 +11,11 @@
     top: 45%;
     left: 41%;
     transform: translate(-50%, -50%);
+    /* Adicionado para garantir que as pétalas não saiam do contêiner */
 }
 
-.petals>div {
+.petals>div,
+.falling-petals>div {
     position: absolute;
     background: var(--petal-color);
     width: var(--petal-width);
@@ -63,107 +65,120 @@
 .petals>div:nth-child(2) {
     top: 10px;
     z-index: 12;
-    animation: bloom2 3s ease-in-out forwards;
 }
 
 .petals>div:nth-child(3) {
     top: 10px;
     z-index: 11;
-    animation: bloom3 3s ease-in-out forwards;
 }
 
 .petals>div:nth-child(4) {
     top: 8px;
     z-index: 10;
-    animation: bloom4 3s ease-in-out forwards;
 }
 
 .petals>div:nth-child(5) {
     top: 8px;
     z-index: 10;
-    animation: bloom5 3s ease-in-out forwards;
 }
 
 .petals>div:nth-child(6) {
     top: 6px;
     z-index: 8;
-    animation: bloom6 3s ease-in-out forwards;
 }
 
 .petals>div:nth-child(7) {
     top: 6px;
     z-index: 7;
-    animation: bloom7 3s ease-in-out forwards;
 }
 
-/* Efeitos de animação */
-@keyframes fall {
-    0% { transform: translateX(0) translateY(0) rotate(0deg); opacity: 1; }
-    30% { transform: translateX(var(--fall-x)) translateY(60px) rotate(var(--fall-rotate)); opacity: 1; }
-    50% { transform: translateX(calc(var(--fall-x) * 2)) translateY(150px) rotate(calc(var(--fall-rotate) * 2)); opacity: 0.8; }
-    70% { transform: translateX(calc(var(--fall-x) * 3)) translateY(230px) rotate(calc(var(--fall-rotate) * 3)); opacity: 0.6; }
-    100% { transform: translateX(calc(var(--fall-x) * 4)) translateY(300px) rotate(calc(var(--fall-rotate) * 4)); opacity: 0; }
+/* Animações de queda */
+@keyframes fallLeft {
+    0% {
+        transform: translateY(0) translateX(0) rotate(0deg);
+        opacity: 1;
+    }
+    15% {
+        transform: translateY(30px) translateX(-10px) rotate(-5deg);
+        opacity: 0.95;
+    }
+    30% {
+        transform: translateY(70px) translateX(-20px) rotate(-12deg);
+        opacity: 0.85;
+    }
+    50% {
+        transform: translateY(120px) translateX(-35px) rotate(-25deg);
+        opacity: 0.7;
+    }
+    70% {
+        transform: translateY(160px) translateX(-45px) rotate(-45deg);
+        opacity: 0.6;
+    }
+    85% {
+        transform: translateY(185px) translateX(-60px) rotate(-60deg);
+        opacity: 0.4;
+    }
+    100% {
+        transform: translateY(198px) translateX(-80px) rotate(-75deg);
+        opacity: 0;
+    }
+}
+
+@keyframes fallRight {
+    0% {
+        transform: translateY(0) translateX(0) rotate(0deg);
+        opacity: 1;
+    }
+    15% {
+        transform: translateY(30px) translateX(10px) rotate(5deg);
+        opacity: 0.95;
+    }
+    30% {
+        transform: translateY(70px) translateX(20px) rotate(12deg);
+        opacity: 0.85;
+    }
+    50% {
+        transform: translateY(120px) translateX(35px) rotate(25deg);
+        opacity: 0.7;
+    }
+    70% {
+        transform: translateY(160px) translateX(45px) rotate(45deg);
+        opacity: 0.6;
+    }
+    85% {
+        transform: translateY(185px) translateX(60px) rotate(60deg);
+        opacity: 0.4;
+    }
+    100% {
+        transform: translateY(198px) translateX(80px) rotate(75deg);
+        opacity: 0;
+    }
 }
 
 .falling-left {
-    --fall-x: -30px;
-    --fall-rotate: -10deg;
-    animation: fall 10s ease-in-out infinite;
+    left: 20%;
+    border-radius: 35px 0px 35px 0px;
+    animation: fallLeft 7s linear infinite;
+    animation-delay: 0s; /* Inicia imediatamente */
 }
 
 .falling-right {
-    --fall-x: 30px;
-    --fall-rotate: 10deg;
-    animation: fall 10s ease-in-out infinite;
-}
-
-/* Aplicando as classes às pétalas */
-.deadPetals>div:nth-child(2),
-.deadPetals>div:nth-child(4),
-.deadPetals>div:nth-child(6) {
-    background: var(--petal-color);
-    left: -18px;
+    left: 80%;
     border-radius: 0px 35px 0px 35px;
-    transform-origin: bottom right;
-    animation: fallLeft 10s ease-in-out infinite;
+    animation: fallRight 7s linear infinite;
+    animation-delay: 7s; /* Espera 7 segundos antes de começar */
 }
 
-.deadPetals>div:nth-child(3),
-.deadPetals>div:nth-child(5),
-.deadPetals>div:nth-child(7) {
-    background: var(--petal-color);
-    left: 18px;
-    border-radius: 35px 0px 35px 0px;
-    transform-origin: bottom left;
-    animation: fallRight 10s ease-in-out infinite;
+/* Para repetir esse ciclo de forma infinita */
+.falling-left:nth-child(2) {
+    animation-delay: 14s; /* Após o segundo ciclo, o próximo começará 7s depois */
 }
 
-.deadPetals>div:nth-child(2) {
-    top: 10px;
-    animation: bloom2 3s ease-in-out forwards, fallLeft 10s ease-in-out infinite 5s;
+.falling-right:nth-child(2) {
+    animation-delay: 21s; /* 7s do anterior + 7s */
 }
 
-.deadPetals>div:nth-child(3) {
-    top: 10px;
-    animation: bloom3 3s ease-in-out forwards, fallRight 10s ease-in-out infinite 10s;
-}
 
-.deadPetals>div:nth-child(4) {
-    top: 8px;
-    animation: bloom4 3s ease-in-out forwards, fallLeft 10s ease-in-out infinite 15s;
-}
 
-.deadPetals>div:nth-child(5) {
-    top: 8px;
-    animation: bloom5 3s ease-in-out forwards, fallRight 10s ease-in-out infinite 20s;
-}
 
-.deadPetals>div:nth-child(6) {
-    top: 6px;
-    animation: bloom6 3s ease-in-out forwards, fallLeft 10s ease-in-out infinite 25s;
-}
 
-.deadPetals>div:nth-child(7) {
-    top: 6px;
-    animation: bloom7 3s ease-in-out forwards, fallRight 10s ease-in-out infinite 30s;
-}
