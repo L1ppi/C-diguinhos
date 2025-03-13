@@ -15,7 +15,7 @@ body {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%); 
-    background: cyan;/* Adicionado para garantir que as pétalas não saiam do contêiner */
+    
 }
 
 .glass {
@@ -71,3 +71,4 @@ body {
     top: 225px;
     border-radius: 90px;
 }
+
