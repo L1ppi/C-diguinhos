@@ -1,0 +1,74 @@
+body {
+    max-height: 350px;
+    max-width: 350px;
+    background: #080f1a;
+    font-family: 'Poppins', sans-serif;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%); 
+    
+}
+
+.glass {
+    height: 495px;
+    width: 315px;
+    background: #122139;
+    border-radius: 270px 270px 0px 0px;
+    position: relative;
+}
+
+.glass:before {
+    content: "";
+    height: 36px;
+    width: 36px;
+    transform-origin: center;
+    border: 22.5px solid #122139;
+    border-radius: 100%;
+    position: absolute;
+    left: 50%;
+    top: -58.5px;
+    transform: translateX(-50%);
+}
+
+.glass:after {
+    content: "";
+    position: absolute;
+    height: 13.5px;
+    width: 315px;
+    background: #a52a2a;
+    top: 495px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.shine {
+    width: 18px;
+    height: 207px;
+    background: white;
+    opacity: 0.2;
+    position: absolute;
+    left: 80%;
+    top: 72px;
+    border-radius: 90px;
+    z-index: 10;
+}
+
+.shine:before {
+    content: "";
+    width: 18px;
+    height: 36px;
+    position: absolute;
+    background: white;
+    top: 225px;
+    border-radius: 90px;
+}
+
